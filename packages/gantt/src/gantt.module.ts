@@ -21,6 +21,10 @@ import { GanttCalendarHeaderComponent } from './components/calendar/header/calen
 import { GanttCalendarGridComponent } from './components/calendar/grid/calendar-grid.component';
 import { GanttTableBodyComponent } from './components/table/body/gantt-table-body.component';
 import { GanttLoaderComponent } from './components/loader/loader.component';
+import { AppGanttExampleComponent, GANTT_TEST_TOKEN } from 'example/src/app/gantt/gantt.component';
+
+import { TableHeaderComponent } from './components/table-custom/header/table-header.component';
+import { TableBodyComponent } from './components/table-custom/body/table-body.component';
 
 @NgModule({
     imports: [CommonModule, DragDropModule, ScrollingModule],
@@ -35,7 +39,9 @@ import { GanttLoaderComponent } from './components/loader/loader.component';
         NgxGanttToolbarComponent,
         GanttCalendarHeaderComponent,
         GanttCalendarGridComponent,
-        GanttDragBackdropComponent
+        GanttDragBackdropComponent,
+        TableHeaderComponent,
+        TableBodyComponent
     ],
     declarations: [
         NgxGanttComponent,
@@ -57,14 +63,17 @@ import { GanttLoaderComponent } from './components/loader/loader.component';
         NgxGanttToolbarComponent,
         IsGanttRangeItemPipe,
         IsGanttBarItemPipe,
-        IsGanttCustomItemPipe
+        IsGanttCustomItemPipe,
+        TableHeaderComponent,
+        TableBodyComponent
     ],
     providers: [
         CdkVirtualScrollViewport,
         {
             provide: GANTT_GLOBAL_CONFIG,
             useValue: defaultConfig
-        }
+        },
+        { provide: GANTT_TEST_TOKEN, useClass: AppGanttExampleComponent }
     ]
 })
 export class NgxGanttModule {}

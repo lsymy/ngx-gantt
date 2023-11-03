@@ -16,6 +16,18 @@ import { startWith, takeUntil } from 'rxjs/operators';
 export class AppGanttFlatComponent extends GanttUpper implements OnInit {
     mergeIntervalDays = 3;
 
+    data = [
+        { id: 1, name: 'Peter', age: 25, job: 'Engineer', address: 'Beijing Dong Sheng Technology' },
+        { id: 2, name: 'Peter', age: 26, job: 'Designer', address: 'Xian Economic Development Zone' },
+        { id: 3, name: 'Tom', age: 30, job: 'Engineer', address: 'New Industrial Park, Shushan, Hefei, Anhui' }
+    ];
+
+    columns = [
+        { field: 'name', header: '姓名', columnWidth: '100px' },
+        { field: 'job', header: '职业', columnWidth: '100px' },
+        { field: 'age', header: '年龄', columnWidth: '100px' }
+    ];
+
     override groups: GanttGroupInternal[] = [];
 
     @HostBinding('class.gantt-flat') ganttFlatClass = true;
@@ -59,7 +71,6 @@ export class AppGanttFlatComponent extends GanttUpper implements OnInit {
     }
 
     private buildGroupItems() {
-        console.log(this.groups);
         this.groups.forEach((group) => {
             group.mergedItems = this.buildGroupMergedItems(group.items);
             // 如果没有数据，默认填充两行空行

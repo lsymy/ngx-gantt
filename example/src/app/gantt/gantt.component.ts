@@ -21,12 +21,12 @@ import { finalize, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ThyNotifyService } from 'ngx-tethys/notify';
 import { randomItems, random } from '../helper';
+import { InjectionToken } from '@angular/core';
 
 @Component({
     selector: 'app-gantt-example',
     templateUrl: './gantt.component.html',
-    styleUrls: ['./gantt.scss'],
-    providers: [GanttPrintService]
+    styleUrls: ['./gantt.scss']
 })
 export class AppGanttExampleComponent implements OnInit, AfterViewInit {
     views = [
@@ -116,11 +116,15 @@ export class AppGanttExampleComponent implements OnInit, AfterViewInit {
 
     @ViewChild('gantt') ganttComponent: NgxGanttComponent;
 
+    scroll(event: Event) {
+        const target = event.currentTarget as HTMLElement;
+    }
+
     dropEnterPredicate = (event: GanttTableDragEnterPredicateContext) => {
         return true;
     };
 
-    constructor(private printService: GanttPrintService, private thyNotify: ThyNotifyService) {}
+    constructor(private thyNotify: ThyNotifyService) {}
 
     ngOnInit(): void {
         // init items children
@@ -159,14 +163,16 @@ export class AppGanttExampleComponent implements OnInit, AfterViewInit {
         );
     }
 
+    test(event: any) {
+        console.log(12313213123);
+    }
+
     linkDragEnded(event: GanttLinkDragEvent) {
         this.items = [...this.items];
         this.thyNotify.info('Event: linkDragEnded', `创建了关联关系`);
     }
 
-    print(name: string) {
-        this.printService.print(name);
-    }
+    print(name: string) {}
 
     scrollToToday() {
         this.ganttComponent.scrollToToday();
@@ -234,3 +240,5 @@ export class AppGanttExampleComponent implements OnInit, AfterViewInit {
         console.log('拖拽结束了', event);
     }
 }
+
+export const GANTT_TEST_TOKEN = new InjectionToken<AppGanttExampleComponent>('gantt_test');

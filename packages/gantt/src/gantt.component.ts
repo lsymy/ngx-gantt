@@ -40,6 +40,7 @@ import { NgxGanttRootComponent } from './root.component';
 import { GanttDate } from './utils/date';
 import { CdkVirtualScrollViewport, ViewportRuler } from '@angular/cdk/scrolling';
 import { Dictionary, keyBy, recursiveItems, uniqBy } from './utils/helpers';
+import { GanttPrintService } from './gantt-print.service';
 @Component({
     selector: 'ngx-gantt',
     templateUrl: './gantt.component.html',
@@ -52,7 +53,8 @@ import { Dictionary, keyBy, recursiveItems, uniqBy } from './utils/helpers';
         {
             provide: GANTT_ABSTRACT_TOKEN,
             useExisting: forwardRef(() => NgxGanttComponent)
-        }
+        },
+        GanttPrintService
     ]
 })
 export class NgxGanttComponent extends GanttUpper implements OnInit, OnChanges, AfterViewInit, AfterViewChecked {
@@ -89,6 +91,8 @@ export class NgxGanttComponent extends GanttUpper implements OnInit, OnChanges, 
     @Output() override linkDragEnded = new EventEmitter<GanttLinkDragEvent>();
 
     @Output() lineClick = new EventEmitter<GanttLineClickEvent>();
+
+    @Output() test = new EventEmitter<GanttLineClickEvent>();
 
     @Output() selectedChange = new EventEmitter<GanttSelectedEvent>();
 

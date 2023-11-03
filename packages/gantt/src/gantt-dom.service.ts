@@ -4,6 +4,7 @@ import { fromEvent, Subject, merge, EMPTY, Observable } from 'rxjs';
 import { pairwise, map, auditTime, takeUntil } from 'rxjs/operators';
 import { isNumber } from './utils/helpers';
 import { passiveListenerOptions } from './utils/passive-listeners';
+import { GANTT_TEST_TOKEN, AppGanttExampleComponent } from 'example/src/app/gantt/gantt.component';
 
 const scrollThreshold = 50;
 
@@ -46,7 +47,15 @@ export class GanttDomService implements OnDestroy {
 
     private unsubscribe$ = new Subject<void>();
 
-    constructor(private ngZone: NgZone, @Inject(PLATFORM_ID) private platformId: string) {}
+    private gantt_test: AppGanttExampleComponent;
+
+    constructor(
+        private ngZone: NgZone,
+        @Inject(PLATFORM_ID) private platformId: string,
+        @Inject(GANTT_TEST_TOKEN) gantt_test: AppGanttExampleComponent
+    ) {
+        this.gantt_test = gantt_test;
+    }
 
     private monitorScrollChange() {
         const scrollObservers = [
@@ -80,6 +89,8 @@ export class GanttDomService implements OnDestroy {
                 this.sideContainer.scrollTop = target.scrollTop;
                 this.mainContainer.scrollTop = target.scrollTop;
             }
+
+            this.gantt_test.scroll(event);
         } else {
             this.sideContainer.scrollTop = target.scrollTop;
             this.mainContainer.scrollTop = target.scrollTop;

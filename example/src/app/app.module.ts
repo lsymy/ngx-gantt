@@ -5,6 +5,7 @@ import { ThyButtonModule } from 'ngx-tethys/button';
 import { ThyCheckboxModule } from 'ngx-tethys/checkbox';
 import { ThySwitchModule } from 'ngx-tethys/switch';
 import { ThyNotifyModule } from 'ngx-tethys/notify';
+import { ThyTableModule } from 'ngx-tethys/table';
 import { ThyDatePickerModule } from 'ngx-tethys/date-picker';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -53,6 +54,7 @@ import { AppGanttVirtualScrollExampleComponent } from './gantt-virtual-scroll/ga
         ThyNotifyModule,
         ThySwitchModule,
         ThyDatePickerModule,
+        ThyTableModule,
         ...EXAMPLE_MODULES
     ],
     providers: [...DOCGENI_SITE_PROVIDERS],

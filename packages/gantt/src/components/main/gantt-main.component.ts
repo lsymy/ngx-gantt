@@ -25,6 +25,8 @@ export class GanttMainComponent {
 
     @Output() lineClick = new EventEmitter<GanttLineClickEvent>();
 
+    @Output() test = new EventEmitter<GanttLineClickEvent>();
+
     @HostBinding('class.gantt-main-container') ganttMainClass = true;
 
     constructor(@Inject(GANTT_UPPER_TOKEN) public ganttUpper: GanttUpper) {}

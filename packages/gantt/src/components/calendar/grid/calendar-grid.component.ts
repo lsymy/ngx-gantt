@@ -8,6 +8,7 @@ import { isNumber } from '../../../utils/helpers';
 import { GANTT_UPPER_TOKEN, GanttUpper } from '../../../gantt-upper';
 import { GanttViewType } from './../../../class/view-type';
 import { headerHeight, todayBorderRadius } from '../../../gantt.styles';
+import { GanttDate } from 'ngx-gantt';
 
 const mainHeight = 5000;
 
@@ -53,12 +54,30 @@ export class GanttCalendarGridComponent implements OnInit, OnDestroy {
         }
     }
 
+    setCustomsPoint() {
+        const GDate = new GanttDate('2023-11-03 00:00:00');
+        const x = this.view.getXPointByDate(GDate) + this.view.getDayOccupancyWidth(GDate) / 2;
+        const todayEle = this.elementRef.nativeElement.getElementsByClassName('gantt-calendar-custom-overlay')[0] as HTMLElement;
+        const line = this.elementRef.nativeElement.getElementsByClassName('custom-line')[0] as HTMLElement;
+
+        if (isNumber(x)) {
+            if (line) {
+                line.style.left = `${x}px`;
+                line.style.top = `0px`;
+                line.style.bottom = `${-mainHeight}px`;
+            }
+        } else {
+            todayEle.style.display = 'none';
+        }
+    }
+
     ngOnInit() {
         this.ngZone.onStable.pipe(take(1)).subscribe(() => {
             merge(this.ganttUpper.viewChange, this.ganttUpper.view.start$)
                 .pipe(takeUntil(this.unsubscribe$))
                 .subscribe(() => {
                     this.setTodayPoint();
+                    this.setCustomsPoint();
                 });
         });
     }

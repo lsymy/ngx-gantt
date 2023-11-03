@@ -2,6 +2,10 @@
   <span class="today-line" *ngIf="ganttUpper.showTodayLine"> </span>
 </div>
 
+<div class="gantt-calendar-custom-overlay">
+  <span class="custom-line"> </span>
+</div>
+
 <svg class="gantt-calendar-grid-main" [attr.width]="view.width" [attr.height]="headerHeight - 1">
   <g>
     <g *ngIf="view.showTimeline">

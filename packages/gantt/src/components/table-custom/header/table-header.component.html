@@ -1,0 +1,5 @@
+<div class="d-flex">
+  <div class="gantt-table-column" *ngFor="let column of columns; let i = index" [style.width]="column.columnWidth">
+    {{ column.header }}
+  </div>
+</div>

@@ -18,7 +18,7 @@ export class AppGanttAdvancedExampleComponent implements OnInit {
         draggable: true,
         mergeIntervalDays: 3,
         styles: {
-            lineHeight: 50
+            lineHeight: 33
         }
     };
 
@@ -28,7 +28,5 @@ export class AppGanttAdvancedExampleComponent implements OnInit {
         const { groups, items } = randomGroupsAndItems(10);
         this.groups = groups;
         this.items = items;
-
-        console.log(this.groups, this.items);
     }
 }

@@ -40,6 +40,7 @@ $primary: #6698ff;
 
 .gantt-example-content {
   margin-left: 300px;
+
   .gantt-example-component {
     display: block;
     margin: 20px;
@@ -52,19 +53,24 @@ $primary: #6698ff;
         display: none;
       }
     }
+
     .header-with-baseline {
       .layout-header-content {
         display: flex;
         align-items: center;
+
         .baseline-switch {
           display: flex;
         }
       }
     }
+
     ngx-gantt-root {
       border: 1px solid #eee;
+
       .table-footer {
         display: flex;
+
         .gantt-table-column {
           overflow: hidden;
           border-right: 1px solid #eee;
@@ -77,13 +83,16 @@ $primary: #6698ff;
           }
         }
       }
+
       .footer-container {
         display: flex;
         position: relative;
         height: 100%;
+
         .footer-item {
           border-right: 1px solid #eee;
           line-height: 44px;
+
           &:last-child {
             border-right: none;
           }

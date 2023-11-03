@@ -1,0 +1,168 @@
+@use '../../styles/variables';
+
+@mixin gantt-table-item-base() {
+  display: flex;
+  box-sizing: border-box;
+  border-bottom: 1px solid variables.$gantt-border-color;
+
+  .gantt-table-column {
+    overflow: hidden;
+    border-right: 1px solid variables.$gantt-border-color;
+    box-sizing: border-box;
+    position: relative;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+@mixin gantt-table-item {
+  @include gantt-table-item-base();
+  cursor: pointer;
+
+  &-first-level-group {
+    background: variables.$gantt-group-background-color;
+  }
+
+  &-with-group {
+    .gantt-table-column {
+      &:first-child {
+        padding: 0 15px 0 32px;
+      }
+    }
+  }
+
+  .gantt-table-column {
+    display: flex;
+    padding: variables.$gantt-table-td-padding;
+  }
+
+  .gantt-table-column-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background-color: variables.$gantt-container-background-color;
+  }
+
+  &-active {
+    background-color: rgba($color: variables.$gantt-table-header-drag-line-color, $alpha: 0.1);
+
+    &:hover {
+      background-color: rgba($color: variables.$gantt-table-header-drag-line-color, $alpha: 0.1);
+    }
+  }
+
+  .gantt-table-column {
+    display: flex;
+    padding: variables.$gantt-table-td-padding;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .gantt-table-column-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .gantt-expand-icon {
+    display: inline-block;
+    width: 20px;
+    color: #aaa;
+  }
+
+  .gantt-drag-handle {
+    width: 1rem;
+    padding: 0 5px 0 0;
+    display: flex;
+    align-items: center;
+    margin-left: -10px;
+  }
+
+  &:hover {
+    background-color: variables.$gantt-container-background-color;
+  }
+
+  &-active {
+    background-color: rgba($color: variables.$gantt-table-header-drag-line-color, $alpha: 0.1);
+
+    &:hover {
+      background-color: rgba($color: variables.$gantt-table-header-drag-line-color, $alpha: 0.1);
+    }
+  }
+}
+
+.gantt-table-header {
+  text-align: center;
+  background: #fff;
+  height: variables.$gantt-header-height;
+  line-height: variables.$gantt-header-height;
+  box-shadow: variables.$gantt-side-shadow;
+  position: relative;
+  z-index: 3;
+  border-right: 1px solid variables.$gantt-border-color;
+
+  @include gantt-table-item();
+
+  .gantt-table-column {
+    font-weight: 400;
+    z-index: 1;
+  }
+}
+
+.gantt-table-body {
+  display: block;
+
+  .table-body-container {
+    // 空数据：
+    // position: absolute;
+    // text-align: center;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // margin-top: 22px;
+
+    // .empty-icon {
+    //     svg {
+    //         height: 78px;
+    //         width: 78px;
+    //     }
+    // }
+
+    // .empty-text {
+    //     color: #cacaca;
+    // }
+
+    // .gantt-table-column-content {
+    //     flex: 1;
+    //     position: relative;
+    //     overflow: hidden;
+    //     text-overflow: ellipsis;
+    //     white-space: nowrap;
+    // }
+
+    .gantt-table-item {
+      // @include gantt-table-item();
+      .gantt-table-column {
+        overflow: hidden;
+        border-right: 1px solid variables.$gantt-border-color;
+        box-sizing: border-box;
+        position: relative;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
